@@ -37,7 +37,7 @@ def proba_rayons():
             for art_ach in dico_rayons.get(r1):
                 for art_prob in dico_rayons.get(r2):
                     dist[i][j] += fichier_achat.loc[art_ach, art_prob]
-            dist[i][j] = dist[i][j] / (len(r1) * len(r2))
+            dist[i][j] = dist[i][j] / (len(dico_rayons.get(r1)) * len(dico_rayons.get(r2)))
     return [[round(float(x), 2) for x in row] for row in dist] #enleve np.float pour remettre en float
 
  def max_distance_totale(mat_dist):
@@ -45,7 +45,7 @@ def proba_rayons():
      for i in range(N_rayons): #calcul distance inversée => somme pour tous les rayons : + grande distance = + grande chance d'acheter qqe chose
          for j in range(N_rayons):
              if j != i :
-                 l += mat_dist[j][i]
+                 l[i] += mat_dist[j][i]
      i_max = 0
      for i in range(N_rayons): #cherche l'indice du max
          if l[i] > l[i_max] :
@@ -180,7 +180,8 @@ def liste_indices_dispo(supermarche, i, j):
     return l
 
 def dist(i, j, k, l) :
-    return abs( i - k + j - l)
+    # return abs( i - k + j - l) (truc d'origine)
+    return abs(i - k) + abs(j - l)
 
 def liste_ind_dist_max(supermarche, i, j):
     lst = liste_indices_dispo(supermarche, i, j)
