@@ -24,7 +24,7 @@ Three types of layouts are studied:
 
 ## Data and assumptions
 
-No real customer transaction data were used in this project.
+No real customer transaction data were used in this project as they are confidential and not available to the public. However, should a real supermarket want to implement the same algorithms, they could use their customer data.  
 
 Instead, the model was constructed using publicly available information and manually defined assumptions designed to represent plausible purchasing behaviour.
 
@@ -66,19 +66,21 @@ Each product has an associated probability of being included in the list.
 
 A random draw is performed for each product, creating a different shopping list for each simulated customer while preserving the assumed purchasing frequencies.
 
-### 3. Modelling product relationships
+### 3. Modelling departments relationships
 
-The product relationship matrix is used to represent the assumed relationships between products.
+The product relationship matrix is used to represent the assumed relationships between departments.
 
-These relationships are incorporated into the simulation to determine the probability of purchasing products encountered during the customer's journey through the supermarket.
+These relationships are incorporated into the simulation to determine the probability of purchasing products in one department knowing that a product was bought in another one during the customer's journey through the supermarket.
 
-### 4. Simulating customer behaviour
+### 4. Simulating customer movement
 
-A customer starts at the entrance and moves through the supermarket to reach the departments containing the products on their initial shopping list.
+Customers move through the supermarket on a 4 × 4 grid.
 
-During this journey, the customer encounters other products.
+Movement is restricted to horizontal and vertical directions, with no diagonal movement.
 
-The probabilistic model is then used to determine whether these additional products are purchased.
+For each target department, a Breadth-First Search (BFS) algorithm is used to determine a shortest path from the customer's current position.
+
+The departments crossed during this path are then considered as potential opportunities for additional purchases.
 
 ### 5. Layout strategies
 
@@ -112,18 +114,17 @@ $$
 
 ## Results
 
-The simulation allows different supermarket layouts to be compared quantitatively.
+The simulation produced a counter-intuitive result: in the current model, the random layout generally generated higher revenue than the two probability-based layouts.
 
-The main outputs include:
+This result suggests that the assumptions used in the model have a significant influence on the outcome.
 
-- simulated customer shopping lists;
-- product purchasing probabilities;
-- product relationship analysis;
-- simulated customer paths;
-- comparison of different supermarket layouts;
-- average revenue generated per customer.
+Several limitations were identified, including:
 
-The numerical results and visualisations are provided in the repository.
+- the simplified model of customer movement;
+- the assumptions used to construct the purchasing probabilities;
+- the limited representation of real supermarket behaviour.
+
+These limitations provide potential directions for improving the model.
 
 ## Technologies
 
