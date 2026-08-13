@@ -24,10 +24,11 @@ fichier_prix_produits = pd.read_csv('prix_moyens_produits.csv', sep=';', index_c
 
 
 def init_supermarche() :
+    # initialise un supermarche vide
     return [N_supermarche*[-1] for i in range(N_supermarche)]
 
 def proba_rayons():
-    renvoie un matrice N_rayons*N_rayons où la case i j represente le pourcentage de chance d'acheter qqe chose dans le rayon j sachant q'un produit a été acheté dans le rayon i 
+    # renvoie une matrice N_rayons*N_rayons où la case i j represente le pourcentage de chance d'acheter qqe chose dans le rayon j sachant q'un produit a été acheté dans le rayon i 
     dist = [N_rayons*[0] for i in range(N_rayons)]
     for i in range (N_rayons):
         for j in range(N_rayons):
