@@ -27,7 +27,7 @@ def init_supermarche() :
     return [N_supermarche*[-1] for i in range(N_supermarche)]
 
 def proba_rayons():
-    #renvoie un matrice N_rayons*N_rayons où la case i j represente le pourcentage de chance d'acheter qqe chose dans le rayon j sachant q'un produit a été acheté dans le rayon i 
+    renvoie un matrice N_rayons*N_rayons où la case i j represente le pourcentage de chance d'acheter qqe chose dans le rayon j sachant q'un produit a été acheté dans le rayon i 
     dist = [N_rayons*[0] for i in range(N_rayons)]
     for i in range (N_rayons):
         for j in range(N_rayons):
@@ -39,17 +39,17 @@ def proba_rayons():
             dist[i][j] = dist[i][j] / (len(r1) * len(r2))
     return [[round(float(x), 2) for x in row] for row in dist] #enleve np.float pour remettre en float
 
-# def max_distance_totale(mat_dist):
-#     l = [0 for i in range(N_rayons)]
-#     for i in range(N_rayons): #calcul distance inversée => somme pour tous les rayons : + grande distance = + grande chance d'acheter qqe chose
-#         for j in range(N_rayons):
-#             if j != i :
-#                 l += mat_dist[j][i]
-#     i_max = 0
-#     for i in range(N_rayons): #cherche l'indice du max
-#         if l[i] > l[i_max] :
-#             i_max = i
-#     return i_max
+ def max_distance_totale(mat_dist):
+     l = [0 for i in range(N_rayons)]
+     for i in range(N_rayons): #calcul distance inversée => somme pour tous les rayons : + grande distance = + grande chance d'acheter qqe chose
+         for j in range(N_rayons):
+             if j != i :
+                 l += mat_dist[j][i]
+     i_max = 0
+     for i in range(N_rayons): #cherche l'indice du max
+         if l[i] > l[i_max] :
+             i_max = i
+     return i_max
 
 def ponderation_rayons():
     l = [0 for i in range(N_rayons)]
@@ -71,66 +71,66 @@ def supprimer(matrice_prob, ind):
 
 ### Organisation des supermarchés
 
-# def organisation_aleatoire(): # mélange de Knuth
-#     ind = [i for i in range(N_rayons)]
-#     for i in range(N_rayons):
-#         k = random.randint(0, i)
-#         tmp = ind[k]
-#         ind[k] = ind[i]
-#         ind[i] = tmp
-#     supermarche = init_supermarche()
-#     for i in range(1, 16):
-#         l = i//N_supermarche #ligne dans la matrice
-#         k= i%N_supermarche #colonne dans la matrice
-#         supermarche[l][k] = ind[i - 1]
-#     return supermarche
+ def organisation_aleatoire(): # mélange de Knuth
+     ind = [i for i in range(N_rayons)]
+     for i in range(N_rayons):
+         k = random.randint(0, i)
+         tmp = ind[k]
+         ind[k] = ind[i]
+         ind[i] = tmp
+     supermarche = init_supermarche()
+     for i in range(1, 16):
+         l = i//N_supermarche #ligne dans la matrice
+         k= i%N_supermarche #colonne dans la matrice
+         supermarche[l][k] = ind[i - 1]
+     return supermarche
 
-# def remplir_proche(supermarche, i, j, prob):
-#     if i == 1 and j == 0:
-#         ()
-#     if i == 0: #si i = 0 on s'arrete un j avant
-#         if j > 1:
-#             liste_proba1 = prob[supermarche[i][j]]
-#             liste_proba2 = prob[supermarche[i + 1][j - 1]]
-#             liste_tot = [liste_proba1[i] + liste_proba2[i] for i in range(N_rayons)]
-#             ind = indice_max(liste_tot)
-#             supprimer(prob, ind)
-#             supermarche[i][j-1] = ind
-#             remplir_proche(supermarche, i, j - 1, prob)
-#     elif i == 3: #si j = 3 on doit aussi remonter
-#         if j > 0:
-#             ind1= indice_max(prob[i])
-#             supprimer(prob, ind1)
-#             supermarche[i][j-1] = ind1
-#             remplir_proche(supermarche, i, j - 1, prob) #commence par remplir le bas
-#         if j == 3:
-#             ind2 = indice_max(prob[i])
-#             supprimer(prob, ind2)
-#             supermarche[i-1][j] = ind2
-#             remplir_proche(supermarche, i - 1, j, prob)
-#     else:
-#         if j > 0:
-#             liste_proba1 = prob[supermarche[i][j]]
-#             liste_proba2 = prob[supermarche[i + 1][j - 1]]
-#             liste_tot = [liste_proba1[i] + liste_proba2[i] for i in range(N_rayons)]
-#             ind = indice_max(liste_tot)
-#             supprimer(prob, ind)
-#             supermarche[i][j-1] = ind
-#             remplir_proche(supermarche, i, j - 1, prob)
-#         if j == 3:
-#             ind2 = indice_max(prob[i])
-#             supprimer(prob, ind2)
-#             supermarche[i-1][j] = ind2
-#             remplir_proche(supermarche, i - 1, j, prob)
-# 
-# def organisation_proche1():
-#     supermarche = init_supermarche()
-#     r_max_ponderation = indice_max(ponderation_rayons())
-#     matrice_probas = proba_rayons()
-#     supermarche[3][3] = r_max_ponderation
-#     supprimer(matrice_probas, r_max_ponderation)
-#     remplir_proche(supermarche, 3, 3, matrice_probas)
-#     return supermarche
+ def remplir_proche(supermarche, i, j, prob):
+     if i == 1 and j == 0:
+         ()
+     if i == 0: #si i = 0 on s'arrete un j avant
+         if j > 1:
+             liste_proba1 = prob[supermarche[i][j]]
+             liste_proba2 = prob[supermarche[i + 1][j - 1]]
+             liste_tot = [liste_proba1[i] + liste_proba2[i] for i in range(N_rayons)]
+             ind = indice_max(liste_tot)
+             supprimer(prob, ind)
+             supermarche[i][j-1] = ind
+             remplir_proche(supermarche, i, j - 1, prob)
+     elif i == 3: #si j = 3 on doit aussi remonter
+         if j > 0:
+             ind1= indice_max(prob[i])
+             supprimer(prob, ind1)
+             supermarche[i][j-1] = ind1
+             remplir_proche(supermarche, i, j - 1, prob) #commence par remplir le bas
+         if j == 3:
+             ind2 = indice_max(prob[i])
+             supprimer(prob, ind2)
+             supermarche[i-1][j] = ind2
+             remplir_proche(supermarche, i - 1, j, prob)
+     else:
+         if j > 0:
+             liste_proba1 = prob[supermarche[i][j]]
+             liste_proba2 = prob[supermarche[i + 1][j - 1]]
+             liste_tot = [liste_proba1[i] + liste_proba2[i] for i in range(N_rayons)]
+             ind = indice_max(liste_tot)
+             supprimer(prob, ind)
+             supermarche[i][j-1] = ind
+             remplir_proche(supermarche, i, j - 1, prob)
+         if j == 3:
+             ind2 = indice_max(prob[i])
+             supprimer(prob, ind2)
+             supermarche[i-1][j] = ind2
+             remplir_proche(supermarche, i - 1, j, prob)
+ 
+ def organisation_proche1():
+     supermarche = init_supermarche()
+     r_max_ponderation = indice_max(ponderation_rayons())
+     matrice_probas = proba_rayons()
+     supermarche[3][3] = r_max_ponderation
+     supprimer(matrice_probas, r_max_ponderation)
+     remplir_proche(supermarche, 3, 3, matrice_probas)
+     return supermarche
 
 def organisation_proche():
     supermarche = init_supermarche()
