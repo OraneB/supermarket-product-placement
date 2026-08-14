@@ -6,11 +6,13 @@
 
 This project investigates how the spatial organisation of products in a supermarket can influence customer purchasing behaviour and the resulting revenue.
 
-The project was developed as part of a French scientific research project (TIPE).
+The project was developed as part of a French scientific research project (TIPE)[^1].
 
 The approach combines probabilistic modelling, stochastic simulation, pathfinding and spatial optimisation. A simplified supermarket is represented a 4 × 4 grid, where customer behaviour and movement are simulated under predefined probabilistic assumptions (purchasing probabilities and product relationships).
 
 Different spatial configurations are then compared according to the average revenue generated per simulated customer.
+
+[^1] : TIPE (*Travaux d'Initiative Personnelle Encadrés*) is a research project required in French preparatory classes (CPGE), evaluated as part of national engineering school entrance exams.
 
 ## Objective
 
@@ -22,11 +24,7 @@ Three types of configurations are studied:
 - proximity-based configuration
 - distance-based configuration
 
-The problem can therefore be formulated as a comparison between different configurations according to a defined performance metric:
-
-$$
-\text{Expected revenue per customer}
-$$
+The problem can therefore be formulated as a comparison between different configurations according to a defined performance metric: **expected revenue per customer**
 
 ## Data and assumptions
 
@@ -90,7 +88,7 @@ For each simulated customer, the initial shopping list is used to compute a purc
 
 These probabilities are then used during the customer's journey through the supermarket to simulate additional purchases.
 
-If a product is encountered but is not purchased, its purchase probability is reduced by half for subsequent encounters. This models a decreasing likelihood of purchasing a product after repeatedly encountering it without buying it. 
+If a product is encountered but is not purchased, its purchase probability is reduced by half for subsequent encounters. This models a decreasing likelihood of purchasing a product after repeatedly encountering it without buying it. This factor (0.5) is an arbitrary modelling choice rather than an empirically derived value — see [Limitations](#limitations).
 
 ### 4. Customer Pathfinding
 
@@ -128,16 +126,37 @@ The average spending per customer is then used as the main performance metric.
 
 The objective is therefore to maximise the revenue per customer.
 
+## Installation & Usage
+ 
+```bash
+pip install -r requirements.txt
+```
+ 
+The `data/` folder already contains the three CSV files required to run the simulation:
+- `probabilites_achats_supermarche.csv` — product-to-product purchase probability matrix
+- `probabilites_produits.csv` — shopping-list probability per product
+- `prix_moyens_produits.csv` — average price per product
+Run the simulation from the `code/` folder:
+ 
+```bash
+cd code
+python main.py
+```
+ 
+Each run prints, for 10 random layouts, the average spend per customer under the random, proximity-based, and distance-based configurations.
+
 ## Results
 
 The simulation produced a counter-intuitive result: in the current model, the random configuration generally generated higher revenue than the two probability-based configurations.
 
 This result suggests that the assumptions used in the model have a significant influence on the outcome.
 
-Several limitations were identified:
-- the assumptions used to construct the purchasing probabilities
-- the simplified representation of customer behaviour;
-- the absence of empirical transaction data.
+## Limitations
+
+- **Modelling assumptions**: the purchasing probabilities and product relationships are manually defined rather than derived from real transaction data.
+- **Simplified customer behaviour**: pathfinding assumes a single shortest path per department visited, and does not model browsing, backtracking, or fatigue beyond the fixed 0.5 decay factor described in [Methodology](#3-computing-purchase-probabilities).
+- **Absence of empirical data**: no real transaction data was available to calibrate or validate the model's assumptions.
+- **Arbitrary decay factor**: the 0.5 multiplier applied when a product is repeatedly declined is a modelling choice, not a measured value. A sensitivity analysis across different values would help assess how strongly this parameter drives the results.
 
 These limitations provide potential directions for improving the model.
 
@@ -145,15 +164,16 @@ These limitations provide potential directions for improving the model.
 
 - Python
 - pandas
-- NumPy
-- matplotlib
-- random
 
 ## Repository Structure
 
 ```text
 .
 ├── code/
+│   ├── config.py
+│   ├── store_layout.py
+│   ├── shopping_simulation.py
+│   └── main.py
 ├── data/
 ├── figures/
 ├── presentation/
