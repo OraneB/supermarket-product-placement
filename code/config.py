@@ -34,6 +34,6 @@ N_PRODUCTS = len(PRODUCT_NAMES)  # 44
 STORE_SIZE = 4                   # the store is a 4x4 grid; [0][0] is the entrance/exit/checkout
  
 # Purchase co-occurrence probabilities, shopping-list probability per product, and average price per product.
-purchase_probability_df = pd.read_csv(DATA_DIR / "probabilites_achats_supermarche.csv", sep=";", index_col=0)
-shopping_list_probability_df = pd.read_csv(DATA_DIR / "probabilites_produits.csv", sep=";", index_col=0)
-average_price_df = pd.read_csv(DATA_DIR / "prix_moyens_produits.csv", sep=";", index_col=0)
+purchase_probability_df = pd.read_csv(DATA_DIR / "probabilites_achats_supermarche.csv", sep=",", index_col=0)
+shopping_list_probability_df = pd.read_csv(DATA_DIR / "probabilites_produits.csv", sep=",", index_col=0)
+average_price_df = pd.read_csv(DATA_DIR / "prix_moyens_produits.csv", sep=",", index_col=0)
