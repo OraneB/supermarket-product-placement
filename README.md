@@ -2,7 +2,7 @@
 
 > Probabilistic simulation of customer purchasing behaviour and supermarket layout optimisation.
 
-> **Academic project — TIPE | 2024–2025**
+> Academic project — TIPE | 2024–2025
 
 ## Overview
 
