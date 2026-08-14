@@ -1,45 +1,45 @@
-Produit;Prix_moyen_euros
-Pommes;2.5
-Salade verte;1.2
-Tomates;2.8
-Pommes de terre;1.8
-Carottes;1.5
-Oignons;1.6
-Concombres;1.0
-Lait;1.1
-Oeufs;2.5
-Farine;1.2
-Sucre;1.3
-Yaourts;2.0
-Fromage rapé;2.4
-Fromage;3.0
-Crème fraiche;1.5
-Beurre;2.2
-Pain;1.1
-Viennoiseries;3.5
-Poulet;8.0
-Jambon;3.2
-Steak Haché;10.0
-Saucisses;7.0
-Pâtes;1.3
-Riz;1.8
-Lentilles;2.0
-Huile d'olive;7.0
-Sel;0.8
-Eau;0.5
-Jus de fruits;2.2
-Café;4.0
-Céréales;3.0
-Thé;2.5
-Thon;2.7
-Légumes en conserve;1.5
-Papier toilette;3.0
-Savon;1.5
-Dentifrice;2.0
-Lessive;7.0
-Liquide vaisselle;2.0
-Biscuits;2.5
-Chocolat;2.0
-Chips;1.8
-Pizzas;4.0
-Légumes congelés;2.5
+Produit,Prix_moyen_euros
+Pommes,2.5
+Salade verte,1.2
+Tomates,2.8
+Pommes de terre,1.8
+Carottes,1.5
+Oignons,1.6
+Concombres,1.0
+Lait,1.1
+Oeufs,2.5
+Farine,1.2
+Sucre,1.3
+Yaourts,2.0
+Fromage rapé,2.4
+Fromage,3.0
+Crème fraiche,1.5
+Beurre,2.2
+Pain,1.1
+Viennoiseries,3.5
+Poulet,8.0
+Jambon,3.2
+Steak Haché,10.0
+Saucisses,7.0
+Pâtes,1.3
+Riz,1.8
+Lentilles,2.0
+Huile d'olive,7.0
+Sel,0.8
+Eau,0.5
+Jus de fruits,2.2
+Café,4.0
+Céréales,3.0
+Thé,2.5
+Thon,2.7
+Légumes en conserve,1.5
+Papier toilette,3.0
+Savon,1.5
+Dentifrice,2.0
+Lessive,7.0
+Liquide vaisselle,2.0
+Biscuits,2.5
+Chocolat,2.0
+Chips,1.8
+Pizzas,4.0
+Légumes congelés,2.5
