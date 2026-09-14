@@ -129,11 +129,7 @@ The average spending per customer is then used as the main performance metric.
 The objective is therefore to maximise the revenue per customer.
 
 ## Installation & Usage
- 
-```bash
-pip install -r requirements.txt
-```
- 
+
 The `data/` folder already contains the three CSV files required to run the simulation:
 - `probabilites_achats_supermarche.csv` — product-to-product purchase probability matrix
 - `probabilites_produits.csv` — shopping-list probability per product
@@ -177,6 +173,5 @@ These limitations provide potential directions for improving the model.
 │   ├── shopping_simulation.py
 │   └── main.py
 ├── data/
-├── figures/
 ├── presentation/
 └── README.md
